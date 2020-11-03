@@ -8,7 +8,8 @@ public class ShoppingList {
 
     public void add(String record) throws Exception {
         String[] rec = record.split(" ");
-        if (rec.length != 3) throw new Exception("Invalid recording format");
+        if (rec.length != 3) throw new Exception("Invalid recording format,the record must be in the format \"Name product_name product_quantity\"");
+        if (!rec[2].matches("^\\d+$")) throw new Exception("Invalid recording format, product quantity must be a number.");
         if (!Slist.containsKey(rec[0])) {
             Slist.put(rec[0], new HashMap(Map.of(rec[1], Integer.parseInt(rec[2]))));
         }
